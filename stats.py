@@ -8,8 +8,12 @@ def get_book_text(filepath):
 def words_count(text):
     return len(text.split())
 
+def sort_on(dict):
+    return dict["num"]
+
 def letters_text_count(text):
     letters = dict()
+    list = []
     for l in text:
         letter = l.lower()
         if letter in letters.keys():
@@ -17,4 +21,11 @@ def letters_text_count(text):
         else:
             letters[letter] = 1
 
-    return letters
+    for key in letters:
+        list.append({"name": key, "num": letters[key]})
+
+    list.sort(reverse=True, key=sort_on)
+
+    for item in list:
+        print(f"{item["name"]}: {item["num"]}")
+
